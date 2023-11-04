@@ -1,1 +1,60 @@
+# OS and editor files
+.DS_Store
+*.tmp
+*.bak
+*.swp
 
+# Node.js
+node_modules/
+npm-debug.log
+
+# Dependency directories
+**/ios/Pods
+**/ios/build
+**/android/.gradle
+**/android/build
+
+# Gradle files
+**/android/app/build
+**/android/build
+
+# Xcode
+**/ios/*.pbxuser
+**/ios/*.mode1v3
+**/ios/*.mode2v3
+**/ios/*.perspectivev3
+**/ios/*.xcuserdatad
+**/ios/*.xcworkspace
+**/ios/*.xccheckout
+**/ios/*.xcscmblueprint
+
+# Android Studio
+**/android/.idea
+
+# Logs and test results
+**/logs
+**/__tests__/coverage
+**/__tests__/test-results
+**/coverage
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Environment variables
+.env.local
+.env.development
+.env.staging
+.env.production
+
+# Expo related files
+expo/
+.cache/
+packager-*.log
+
+# React Navigation
+.navigation/
