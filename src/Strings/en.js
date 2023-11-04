@@ -10,6 +10,7 @@ const Strings = {
     },
     errors: {
       networkError: 'Network error. Please try again later.',
+      generalError: 'Something went wrong!',
     },
   };
   

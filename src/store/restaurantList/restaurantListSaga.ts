@@ -7,13 +7,11 @@ import {
   fetchRestaurantListError,
   fetchRestaurantListSuccess,
 } from './restaurantListReducer';
-// const BASE_URL = 'https://random-data-api.com';
 
-function* fetchRestaurantListData() {
+function* fetchRestaurantListData(): Generator<any> {
   try {
     const data: any = yield call(fetchRandomRestaurantsAPI);
 
-    // console.log("API response of fetchRestaurantList--> " + JSON.stringify(data))
     yield put(fetchRestaurantListSuccess(data));
   } catch (error) {
     console.log(

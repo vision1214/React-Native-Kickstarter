@@ -14,10 +14,8 @@ export const useRestaurantList = () => {
   const fetch = useRef(() => dispatch(fetchRestaurantList())).current;
 
   useEffect(() => {
-    console.log('useRestaurantList--> GOING TO FETCH RESTAURANT LIST DATA');
     fetch();
     const intervalId = setInterval(() => {
-      console.log("GOING TO FETCH RESTAURANT LIST")
       fetch();
     }, 10 * 1000); // 10 seconds in milliseconds
 

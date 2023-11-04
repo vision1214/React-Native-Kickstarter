@@ -1,7 +1,3 @@
-/**
- *
- * Entry point component of app
- */
 import React, {useEffect} from 'react';
 import {Navigation} from '../navigation';
 import {NavigationContainer} from '@react-navigation/native';
@@ -10,6 +6,12 @@ import {Provider} from 'react-redux';
 import useInternetConnectivity from '../utility/hooks/useInternetConnectivity';
 import Screen from '../screens';
 import withSafeArea from '../hocs/withSafeAreaContext';
+import Strings from '../Strings/en';
+
+/**
+ *
+ * Entry point component of app
+ */
 const App = () => {
   const isInternetConnected = useInternetConnectivity();
 
@@ -18,10 +20,10 @@ const App = () => {
     <Provider store={store}>
       {isInternetConnected ? (
         <NavigationContainer>
-          <Navigation></Navigation>
+          <Navigation/>
         </NavigationContainer>
       ) : (
-        <Screen.NoInternet />
+        <Screen.ErrorScreen errorText={Strings.errors.networkError}/>
       )}
     </Provider>
   );

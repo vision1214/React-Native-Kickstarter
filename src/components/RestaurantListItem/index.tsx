@@ -3,7 +3,7 @@ import styles from './styles';
 import {Restaurant} from '../../store/models';
 import FastImage from 'react-native-fast-image';
 
-interface ListItemProps {
+export interface ListItemProps {
   item: Restaurant;
   ItemClickCallback: (data: Restaurant) => void;
 }

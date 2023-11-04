@@ -11,8 +11,9 @@ import styles from './styles';
 import {Restaurant} from '../../store/models';
 import DummyRestaurantList from '../../utility/MockResponse';
 import ListItem from '../../components/RestaurantListItem/index';
-import AutocompleteSearch from '../../components/AutocompleteSearch/AutocompleteSearch';
+import AutocompleteSearch from '../../components/AutocompleteSearch';
 import Strings from '../../Strings/en';
+import ErrorScreen from '../Error';
 
 /**
  *
@@ -25,17 +26,10 @@ const RestaurantListScreen = ({navigation}: {navigation: any}) => {
 
   useEffect(() => {
     setFilteredRestaurants(data);
-    const now = new Date();
-const hours = now.getHours().toString().padStart(2, '0');
-const minutes = now.getMinutes().toString().padStart(2, '0');
-const seconds = now.getSeconds().toString().padStart(2, '0');
-const millis = now.getMilliseconds().toString().padStart(2, '0');
-
-const currentTimeWithSeconds = `${seconds}:${millis}`;
-
-console.log('Current time with seconds:', currentTimeWithSeconds);
-    console.log("DATA-CHANGED----");
   }, [data]);
+
+  useEffect(() => {
+  }, [hasError]);
 
   // Callback function passed to autocompete component to get the selected filter
   const filterCallback = (message: string) => {
@@ -57,6 +51,8 @@ console.log('Current time with seconds:', currentTimeWithSeconds);
 
   return (
     <View style={styles.container}>
+      {hasError ? <ErrorScreen errorText={Strings.errors.generalError}/> :
+      <View style={styles.container}>
       {isLoading && filteredRestaurants.length == 0 ? (
         <ActivityIndicator size="large" style={styles.indicatorStyle} />
       ) : (
@@ -78,6 +74,7 @@ console.log('Current time with seconds:', currentTimeWithSeconds);
           />
         </View>
       )}
+      </View>}
     </View>
   );
 };

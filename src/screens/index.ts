@@ -1,9 +1,9 @@
 import RestaurantList from './RestaurantList';
 import RestaurantDetail from './RestaurantDetail';
-import NoInternet from './NoInternet';
+import ErrorScreen from './Error';
 
 export default {
   RestaurantList,
   RestaurantDetail,
-  NoInternet,
+  ErrorScreen,
 };
