@@ -1,6 +1,6 @@
-import RestaurantList from './RestaurantList';
-import RestaurantDetail from './RestaurantDetail';
-import ErrorScreen from './Error';
+import RestaurantList from './RestaurantList/RestaurantList';
+import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
+import ErrorScreen from './Error/Error';
 
 export default {
   RestaurantList,

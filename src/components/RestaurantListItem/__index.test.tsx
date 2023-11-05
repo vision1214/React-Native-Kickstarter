@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ListItem, { ListItemProps } from './index';
+import ListItem, { ListItemProps } from './RestaurantListItem';
 import { Restaurant } from '../../store/models';
 
 const mockCallback = (value: Restaurant) => {

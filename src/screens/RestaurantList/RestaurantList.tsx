@@ -10,10 +10,10 @@ import {useRestaurantList} from '../../store/restaurantList/useRestaurantList';
 import styles from './styles';
 import {Restaurant} from '../../store/models';
 import DummyRestaurantList from '../../utility/MockResponse';
-import ListItem from '../../components/RestaurantListItem/index';
-import AutocompleteSearch from '../../components/AutocompleteSearch';
+import ListItem from '../../components/RestaurantListItem/RestaurantListItem';
+import AutocompleteSearch from '../../components/AutocompleteSearch/AutocompleteSearch';
 import Strings from '../../Strings/en';
-import ErrorScreen from '../Error';
+import ErrorScreen from '../Error/Error';
 
 /**
  *

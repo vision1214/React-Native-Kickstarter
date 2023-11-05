@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import styles from './styles';
 import {DaySchedule, OpeningHours, Restaurant} from '../../store/models';
 import FastImage from 'react-native-fast-image';
-import Strings from '../../Strings/en';
+import useProcessRestaurantData from './useProcessRestaurantData';
 
 /**
  *
@@ -12,28 +12,9 @@ import Strings from '../../Strings/en';
  */
 const RestaurantDetailScreen = ({route}: {route: any}) => {
   const restaurantDetail: Restaurant = route.params.data;
-  const [dayTime, setDayTime] = useState('');
-  const [openStatus, setOpenStatus] = useState('');
-  const [isClosed, setIsClosed] = useState(false);
 
-  useEffect(() => {
-    const date = new Date();
-    const options: Intl.DateTimeFormatOptions = {weekday: 'long'};
-    const dayName = new Intl.DateTimeFormat('en-US', options).format(date);
-    const timeData: OpeningHours = restaurantDetail.hours;
-
-    for (const day in timeData) {
-      if (timeData.hasOwnProperty(day) && day == dayName.toLowerCase()) {
-        const dayData: DaySchedule = timeData[day];
-        setDayTime(
-          `${dayName} ${Strings.text.openingHours}   ${dayData.opens_at} - ${dayData.closes_at} `,
-        );
-        setOpenStatus(dayData.is_closed ? Strings.text.closed : Strings.text.closed);
-        setIsClosed(dayData.is_closed);
-      }
-    }
-  }, []);
-
+  const {dayTime, openStatus, isClosed} = useProcessRestaurantData(restaurantDetail);
+ 
   return (
     <View style={styles.container}>
       <FastImage
