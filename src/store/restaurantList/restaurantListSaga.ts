@@ -1,7 +1,7 @@
-import {takeLatest, put, call} from 'redux-saga/effects';
-import axios from 'axios';
-import { API_URL } from '@env';
+import {call, put, takeLatest} from 'redux-saga/effects';
 
+import {fetchData} from '../../service/api';
+import {getRestaurants} from '../../service/endpoint';
 import {
   fetchRestaurantList,
   fetchRestaurantListError,
@@ -10,7 +10,7 @@ import {
 
 function* fetchRestaurantListData(): Generator<any> {
   try {
-    const data: any = yield call(fetchRandomRestaurantsAPI);
+    const data: any = yield call(fetchRandomRestaurants);
 
     yield put(fetchRestaurantListSuccess(data));
   } catch (error) {
@@ -22,15 +22,8 @@ function* fetchRestaurantListData(): Generator<any> {
   }
 }
 
-export const fetchRandomRestaurantsAPI = async () => {
-  try {
-    const response = await axios.get(
-      `${API_URL}/api/restaurant/random_restaurant?size=100`,
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+export const fetchRandomRestaurants = async () => {
+  return await fetchData(getRestaurants);
 };
 
 function* restaurantListSaga() {

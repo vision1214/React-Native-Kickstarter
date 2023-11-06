@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
   },
   errorInfoText: {color: 'white', fontSize: 12},
   redText: {color: 'red'},
-  blackText: {color: 'black'},
+  greenText: {color: 'green'},
+  image: {width: '100%', height: 380},
+  horizontal: {flexDirection: 'row', justifyContent: 'space-between'},
 });
 
 export default styles;

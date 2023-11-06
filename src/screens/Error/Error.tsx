@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+
 import styles from './styles';
-import Strings from '../../Strings/en';
 
 interface ErrorProps {
   errorText: string;
@@ -11,12 +11,10 @@ interface ErrorProps {
  *
  * @returns This is the default screen when there is any issue with internet connection
  */
-const ErrorScreen : React.FC<ErrorProps> = ({errorText}) => {
+const ErrorScreen: React.FC<ErrorProps> = ({errorText}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.noInternetText}>
-      {errorText}
-      </Text>
+      <Text style={styles.noInternetText}>{errorText}</Text>
     </View>
   );
 };

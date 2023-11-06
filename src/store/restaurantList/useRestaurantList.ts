@@ -1,8 +1,8 @@
 import {useEffect, useMemo, useRef} from 'react';
-import {useAppDispatch, useAppSelector} from '../../store/store';
 
-import {fetchRestaurantList} from './restaurantListReducer';
 import {Restaurant} from '../../store/models';
+import {useAppDispatch, useAppSelector} from '../../store/store';
+import {fetchRestaurantList} from './restaurantListReducer';
 
 export const useRestaurantList = () => {
   const data: Restaurant[] = useAppSelector(state => state.restaurantList.data);
@@ -23,7 +23,7 @@ export const useRestaurantList = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [fetch]);
 
   return useMemo(
     () => ({fetch, isLoading, isEmpty, hasError, data}),

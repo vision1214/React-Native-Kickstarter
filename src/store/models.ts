@@ -18,7 +18,7 @@ export interface DaySchedule {
 }
 
 export interface OpeningHours {
-  monday: DaySchedule;
+  [monday: string]: DaySchedule;
   tuesday: DaySchedule;
   wednesday: DaySchedule;
   thursday: DaySchedule;

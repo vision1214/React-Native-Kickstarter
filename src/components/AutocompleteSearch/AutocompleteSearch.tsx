@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
-import {View, TextInput, Text, FlatList, TouchableOpacity} from 'react-native';
-import styles from './styles';
-import Strings from '../../Strings/en';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
+import {FlatList, TextInput, View} from 'react-native';
 
-interface ListItemProps {
+import Strings from '../../strings/en';
+import AutocompleteListItem from './AutocompleteListItem';
+import styles from './styles';
+
+export interface ListItemProps {
   data: string[];
   filterCallback: (data: string) => void;
+  ref: any;
 }
 
 /**
@@ -14,53 +17,64 @@ interface ListItemProps {
  * @param param1 callback method called after filter item selection
  * @returns
  */
-const AutocompleteSearch: React.FC<ListItemProps> = ({
-  data,
-  filterCallback,
-}) => {
-  const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+const AutocompleteSearch: React.FC<ListItemProps> = forwardRef(
+  ({data, filterCallback}, ref) => {
+    const [query, setQuery] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    let debounceTimeout: number;
 
-  const handleInputChange = (text: string) => {
-    setQuery(text);
-    if (text) {
-      const filteredData: string[] = data.filter(item =>
-        item.toLowerCase().includes(text.toLowerCase()),
-      );
-      setSuggestions(filteredData);
-    } else {
+    useImperativeHandle(ref, () => ({
+      clearSearch() {
+        setQuery('');
+      },
+    }));
+
+    const handleInputChange = (text: string) => {
+      setQuery(text);
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => {
+        handleSearch(text);
+      }, 500);
+    };
+
+    const handleSearch = (text: string) => {
+      if (text) {
+        const filteredData: string[] = data.filter(item =>
+          item.toLowerCase().includes(text.toLowerCase()),
+        );
+        setSuggestions(filteredData);
+      } else {
+        setSuggestions([]);
+      }
+    };
+
+    const renderItem = ({item}: {item: string}) => (
+      <AutocompleteListItem item={item} ItemClickCallback={handleItemPress} />
+    );
+
+    const handleItemPress = (item: string) => {
       setSuggestions([]);
-    }
-  };
+      setQuery(item);
+      filterCallback(item);
+    };
 
-  const Item = ({item}: {item: string}) => (
-    <TouchableOpacity onPress={() => handleItemPress(item)}>
-      <Text style={{padding: 10}}>{item}</Text>
-    </TouchableOpacity>
-  );
-
-  const handleItemPress = (item: string) => {
-    setSuggestions([]);
-    setQuery('');
-    filterCallback(item);
-  };
-
-  return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder={Strings.text.search}
-        value={query}
-        onChangeText={handleInputChange}
-      />
-      <FlatList
-        style={styles.list}
-        data={suggestions}
-        renderItem={Item}
-        keyExtractor={(item, index) => 'key' + index}
-      />
-    </View>
-  );
-};
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder={Strings.text.search}
+          value={query}
+          onChangeText={handleInputChange}
+        />
+        <FlatList
+          style={styles.list}
+          data={suggestions}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => 'key' + index}
+        />
+      </View>
+    );
+  },
+);
 
 export default AutocompleteSearch;

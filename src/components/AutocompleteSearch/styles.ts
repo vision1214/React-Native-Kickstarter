@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   input: {borderBottomWidth: 1, padding: 10},
   list: {marginLeft: 16, marginRight: 16, maxHeight: 200},
+  searchText: {padding: 10},
 });
 
 export default styles;

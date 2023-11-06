@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import {useEffect, useState} from 'react';
 
 /**
  * This is a custom hook which listens to the internet connection status change

@@ -1,6 +1,6 @@
 import {Restaurant} from '../store/models';
 
-const DummyRestaurantList: Restaurant[] = [
+export const DummyRestaurantList: Restaurant[] = [
   {
     id: 1270,
     uid: '144eef0c-d624-43bb-b26a-d4d1ad16ef97',

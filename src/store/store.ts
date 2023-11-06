@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './rootSaga';
-import restaurantListReducer from './restaurantList/restaurantListReducer';
-import rootReducer from './rootReducer';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+
+import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 

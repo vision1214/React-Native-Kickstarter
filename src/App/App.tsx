@@ -1,12 +1,13 @@
-import React, {useEffect} from 'react';
-import {Navigation} from '../navigation';
 import {NavigationContainer} from '@react-navigation/native';
-import store from '../store/store';
+import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
-import useInternetConnectivity from '../utility/hooks/useInternetConnectivity';
-import Screen from '../screens';
+
 import withSafeArea from '../hocs/withSafeAreaContext';
-import Strings from '../Strings/en';
+import {Navigation} from '../navigation';
+import Screen from '../screens';
+import store from '../store/store';
+import Strings from '../strings/en';
+import useInternetConnectivity from '../utility/hooks/useInternetConnectivity';
 
 /**
  *
@@ -20,10 +21,10 @@ const App = () => {
     <Provider store={store}>
       {isInternetConnected ? (
         <NavigationContainer>
-          <Navigation/>
+          <Navigation />
         </NavigationContainer>
       ) : (
-        <Screen.ErrorScreen errorText={Strings.errors.networkError}/>
+        <Screen.ErrorScreen errorText={Strings.errors.networkError} />
       )}
     </Provider>
   );

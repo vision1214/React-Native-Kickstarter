@@ -3,17 +3,16 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 120,
+    height: 100,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
   listItem: {
     backgroundColor: '#eeeeee',
     borderRadius: 10,
-    marginVertical: 8,
     marginHorizontal: 16,
     elevation: 24,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   name: {
     fontSize: 18,
@@ -37,6 +36,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'Arial',
   },
+  horizontal: {flexDirection: 'row', justifyContent: 'space-between'},
 });
 
 export default styles;

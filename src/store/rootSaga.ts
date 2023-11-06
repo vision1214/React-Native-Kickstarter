@@ -1,4 +1,5 @@
 import {all, fork} from 'redux-saga/effects';
+
 import restaurantListSaga from './restaurantList/restaurantListSaga';
 
 const sagas = [restaurantListSaga];

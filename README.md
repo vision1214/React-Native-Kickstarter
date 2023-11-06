@@ -41,15 +41,25 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
+
 # Building blocks
 
 ## Functional Components
+
 ## Typescript, ESLint, Prettier
+
 ## Internet Connectivity Check -Using NetInfo
+
 ## Rest API call -Using Redux toolkit and Saga
+
 ## Flatlist, Image, Stylesheet, TouchableOpacity, Text, InputText, View, ActivityIndicator
+
 ## App optimization -Memoization
+
 ## Environment config file
+
 ## Separate Constant String file -Will help in multiple language support
+
 ## Custom Hooks -For API call and Internet check
+
 ## HOC -For Safe Area support

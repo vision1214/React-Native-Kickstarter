@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
-import styles from './styles';
-import {DaySchedule, OpeningHours, Restaurant} from '../../store/models';
 import FastImage from 'react-native-fast-image';
+
+import {Restaurant} from '../../store/models';
+import styles from './styles';
 import useProcessRestaurantData from './useProcessRestaurantData';
 
 /**
@@ -13,16 +14,18 @@ import useProcessRestaurantData from './useProcessRestaurantData';
 const RestaurantDetailScreen = ({route}: {route: any}) => {
   const restaurantDetail: Restaurant = route.params.data;
 
-  const {dayTime, openStatus, isClosed} = useProcessRestaurantData(restaurantDetail);
- 
+  const {dayTime, openStatus, isClosed} =
+    useProcessRestaurantData(restaurantDetail);
+
   return (
     <View style={styles.container}>
       <FastImage
-        style={{width: '100%', height: 380}}
+        style={styles.image}
         source={{
           uri: restaurantDetail.logo,
-        }}></FastImage>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        }}
+      />
+      <View style={styles.horizontal}>
         <Text style={styles.name}>{restaurantDetail.name}</Text>
         <Text style={styles.type}>{`* ${restaurantDetail.type}`}</Text>
       </View>
@@ -33,7 +36,7 @@ const RestaurantDetailScreen = ({route}: {route: any}) => {
       <Text
         style={[
           styles.closedStatus,
-          isClosed ? styles.redText : styles.blackText,
+          isClosed ? styles.redText : styles.greenText,
         ]}>
         {openStatus}
       </Text>

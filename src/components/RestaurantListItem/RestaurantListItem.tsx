@@ -1,7 +1,9 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import styles from './styles';
-import {Restaurant} from '../../store/models';
+import React from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
+
+import {Restaurant} from '../../store/models';
+import styles from './styles';
 
 export interface ListItemProps {
   item: Restaurant;
@@ -25,8 +27,9 @@ const ListItem: React.FC<ListItemProps> = ({item, ItemClickCallback}) => {
           style={styles.image}
           source={{
             uri: item.logo,
-          }}></FastImage>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          }}
+        />
+        <View style={styles.horizontal}>
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.type}>{`* ${item.type}`}</Text>
         </View>
@@ -38,4 +41,4 @@ const ListItem: React.FC<ListItemProps> = ({item, ItemClickCallback}) => {
   );
 };
 
-export default ListItem;
+export default React.memo(ListItem);
